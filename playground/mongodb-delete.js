@@ -8,16 +8,20 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp'
         }
         console.log('connected to database');
         const db = client.db('TodoApp');
-        db.collection('Todos').find().count().then((count)=>{
-            console.log("count:",count);
-        },(err)=>{
-            console.log("Unable to etch data",err);
-        });
-        db.collection("Todos").deleteMany({texr:"Eat launch"}).then((result)=>{
+        //delete many
+        // db.collection("Todos").deleteMany({text:"Eat launch"}).then((result)=>{
+        //     console.log(result);
+        // });
+
+        //delete one
+        // db.collection("Todos").deleteOne({text:"something to do"}).then((result)=>{
+        //     console.log(result);
+        // });
+
+        //find one and delete
+        db.collection("Todos").findOneAndDelete({completed:false}).then((result)=>{
             console.log(result);
         });
-
-
 
         //client.close();
 });
